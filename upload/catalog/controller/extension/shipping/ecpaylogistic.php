@@ -155,15 +155,15 @@ class ControllerExtensionShippingecpayLogistic extends Controller {
 			$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order` WHERE order_id = '" . $orderID . "'" );
             $aOrder_Info_Tmp = $query->rows[0] ;
 			$sMsg = "綠界科技廠商管理後台物流訊息:<br>" . print_r($this->request->post, true);
-			$aSuccessCodes = ['2067', '3022', '300'];
+			$aSuccessCodes = ['2067', '3022'];
 			$sRtnCode = $this->request->post['RtnCode'];
-			if (in_array($sRtnCode, $aSuccessCodes)) {
-				if ($sRtnCode == '300') {
-					$aOrder_Info_Tmp['order_status_id'] = 5;
-				} else {
-					$aOrder_Info_Tmp['order_status_id'] = 3;
-				}
+            if ($sRtnCode == '300') {
+                $aOrder_Info_Tmp['order_status_id'] = 5;
+            } else {
+                $aOrder_Info_Tmp['order_status_id'] = 3;
+            }
 
+			if (in_array($sRtnCode, $aSuccessCodes)) {
 				$shippingCode = explode('.', $aOrder_Info_Tmp['shipping_code']);
 				$shippingMethod = array(
 					'fami_collection',
