@@ -495,9 +495,6 @@ class ControllerExtensionShippingecpayLogistic extends Controller
 					if ($_IsCollection == IsCollection::NO) {
 						unset($AL->Send['CollectionAmount']);
 					}
-					if ($_LogisticsSubType != LogisticsSubType::UNIMART_C2C && $_LogisticsSubType != LogisticsSubType::HILIFE_C2C) {
-						unset($AL->Send['SenderCellPhone']);
-					}
 
 					$Result = $AL->BGCreateShippingOrder();
 
